@@ -1,0 +1,45 @@
+<p>repair-list works!</p>
+
+<div class="card">
+    <div class="card-body">
+        <h6 class="text-center">
+            List of repair
+        </h6>
+        <div class = "btn-group">
+            <input type="text" class="form-control" name="buscar" placeholder="Search....." [(ngModel)]="buscar">
+             <a class="btn btn-primary text-white" (click)="consult();">Consultar<i class="far fa-consult"></i></a>  
+        </div>
+        <br><br>
+        <div class = "card">
+        <table class="table  table-hover">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Name</th>
+                    <th>DUI</th>
+                    <th>Vehicle</th>
+                    <th>Price</th>
+                    <th>Bottoms</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let repair of repairList ">
+                    <td>{{repair.$key}}</td>              
+                    <td>{{repair.name}}</td>
+                    <td>{{repair.dui}}</td>
+                    <td>{{repair.vehicle}}</td>
+                    <td class="color-tot">${{repair.price}}</td>
+                    <td>
+                        <a class="btn btn-secondary text-white" (click)="onEdit(repair)">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger text-white" (click)="onDelete(repair.$key)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
