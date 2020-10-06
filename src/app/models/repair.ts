@@ -1,7 +1,7 @@
 export class Repair {
     $key: string;
     name: string;
-    dui: number;
+    dui: string;
     vehicle: string;
     price: number;
 }

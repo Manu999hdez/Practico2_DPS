@@ -11,6 +11,9 @@ import { RepairService } from '../../../services/repair.service';
 import { ToastrService } from 'ngx-toastr'; 
 import Swal from 'sweetalert2';
 
+//PDF
+import {jsPDF} from 'jspdf';
+
 @Component({
   selector: 'app-repair-list',
   templateUrl: './repair-list.component.html',
@@ -53,17 +56,12 @@ export class RepairListComponent implements OnInit {
   }
 
   consult(){
-     this.repairService.getRepairs().snapshotChanges().subscribe(item => {
-      this.repairList = [];
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.repairList.push(x as Repair);
-      });
+     
 
       this.repairList=this.repairList.filter(data =>{
-        return data.name.toString().trim() === this.buscar;
+        return data.dui.toString().trim() === this.buscar;
       })
+      console.log(this.buscar, this.repairList, this.repairList.length);
 
       if(this.repairList.length === 0){
         this.ngOnInit();
@@ -82,7 +80,6 @@ export class RepairListComponent implements OnInit {
             timer: 1500
           })
       }
-    });
   }
   /* 
    Recibe una varible de tipo 'Repair' para invocar el servicio de firebase, para actualizarlo
@@ -90,6 +87,7 @@ export class RepairListComponent implements OnInit {
   */
     onEdit(repair: Repair) {
       this.repairService.selectedRepair = Object.assign({}, repair);
+      
     }
 
       /* 

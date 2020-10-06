@@ -1,5 +1,3 @@
-  
-<p>UNO repair works!</p>
 
 <div class="card mt-5">
     <div class="card-body">
@@ -16,7 +14,7 @@
             </div>
 
             <div class="form-group">
-                <input type="number" class="form-control" name="dui" #dui="ngModel"
+                <input type="text" class="form-control" name="dui" #dui="ngModel"
                     [(ngModel)]="repairService.selectedRepair.dui" placeholder="Add A DUI">
             </div>
 
@@ -39,9 +37,14 @@
                 <button class="btn btn-primary" type="submit">
                     <i class="fas fa-plus-circle"></i> Add A Repair
                 </button>
+
                 <button class="btn btn-secondary" type="reset" (click)="resetForm(repairForm)">
                     <i class="fas fa-sync-alt"></i> Reset
                 </button>
+<br><br>
+                <button class="btn color-tot" (click)="repairForm.valid ? generatePdf('open') : ''">
+                    <i class="far	fa-clipboard" >
+                  </i> <span>Generar Factura</span></button>
             </div>
         </form>
     </div>
